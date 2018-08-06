@@ -30,11 +30,21 @@ class AddItem extends Component {
                     </div>
                 </div>
 					 <div className="container">
-					 	<div className="s10 btn-floating btn-large waves-effect waves-light red">
-						 <i className="material-icons">add</i>
-						 </div>
+						<div className="row">
+							<div className="col s6 offset-s6 right-align">
+								<div className="btn-floating btn-large waves-effect waves-light red">
+								<i className="material-icons">add</i>
+								</div>
+							</div>
+						</div>
 					 </div>
-					 <button>Search</button>
+					 <div className="container">
+                        <div className="row">
+                            <div className="col s12 offset-s4">
+					            <button className="waves-effect waves-light btn-large">Search</button>
+                            </div>
+                        </div>
+                     </div>
             </form>
         );
     }
