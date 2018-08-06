@@ -25,7 +25,6 @@ switch($_GET["action"]/*do a comparison switch on the get superglobal action*/){
 
 //convert the $output variable to json, store the result in $outputJSON
 $json_output = json_encode($output);
-//print $outputJSON
 print_r($json_output);
 //end
 

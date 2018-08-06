@@ -1,5 +1,7 @@
 <?php
 
+require_once './unirest-php/src/Unirest.php';
+
 // //check if you have all the data you need from the client-side call.  
 // //if not, add an appropriate error to errors
 if(empty($_GET['first']) || empty($_GET['second']) || empty($_GET['third'])){
@@ -23,7 +25,10 @@ $response = Unirest\Request::get($url,
   )
 );
 
-print_r ($response);
+// print_r ($response->raw_body);
+$recipeArray = json_decode($response->raw_body, true); // Where variable $huge holds your JSON string.
+
+// echo count($recipeArray);
 
 $output = [ 'success' => false,
 			'recipes' => [],
@@ -31,26 +36,28 @@ $output = [ 'success' => false,
 		];
 
 //check if any data came back
-// if($response){  
-// 	//query is working
-// 	if( $response->num_rows > 0 ){
-// 		//query returned data
-// 		//if it did, change output success to true
-// 		$output['success'] = true;
-// 		//do a while loop to collect all the data 
-// 		while( $row = $response->fetch_assoc() ){
-// 			//add each row of data to the $output['studentData'] array
-// 			$output['studentData'][]= $row;
-// 		}
-// 	}
-// 	else{
-// 		//if not, add to the errors: 'no data'
-// 		$output['errors'][] = "No data available";
-// 	}
-// }
-// else{ 
-// 	//add 'database error' to errors
-// 	$output['errors'][] = "Error with query";
-// }
+if($response->code === 200){  
+	//request is working
+	if( $recipeArray > 0 ){
+		//request returned data
+		//if it did, change output success to true
+		$output['success'] = true;
+		//do a while loop to collect all the data 
+		// while( $row = $response->fetch_assoc() ){
+		// 	//add each row of data to the $output['studentData'] array
+		// 	$output['recipes'][]= $row;
+		// }
+		$output['recipes']= $recipeArray;
+
+	}
+	else{
+		//if not, add to the errors: 'no data'
+		$output['errors'][] = "No data available";
+	}
+}
+else{ 
+	//add to errors
+	$output['errors'][] = "Error with request";
+}
 
 ?>
