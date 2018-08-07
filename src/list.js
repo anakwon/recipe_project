@@ -5,11 +5,17 @@ class AddItem extends Component {
     constructor(props){
         super(props);
 
+        this.state = {
+            ingredient : ''
+        };
 
     }
 
 
     addRow(){
+        event.preventDefault();
+        console.log('button is clicked');
+
         return(
             <div className="row">
                 <label>Ingredient : </label>
@@ -17,6 +23,19 @@ class AddItem extends Component {
             </div>
         )
     }
+
+    // AddRowItem(event){
+    //     event.preventDefault();
+    //     console.log('Row has been added');
+
+    //     return (
+    //         <div className="row">
+    //             <label>Ingredient : </label>
+    //             <input />
+    //         </div>
+    //     )
+    // }
+
     render(){
         return(
             <form>            
