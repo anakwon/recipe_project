@@ -12,8 +12,7 @@ class AddItem extends Component {
     }
 
 
-    addRow(){
-        event.preventDefault();
+    addRow(event){
         console.log('button is clicked');
 
         return(
