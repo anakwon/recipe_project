@@ -2,38 +2,50 @@ import 'materialize-css/dist/css/materialize.min.css';
 import React, { Component } from 'react';
 
 class AddItem extends Component {
+    constructor(props){
+        super(props);
+
+        this.state = {
+            ingredient : ''
+        };
+
+    }
+
+
+    addRow(event){
+        console.log('button is clicked');
+
+        return(
+            <div className="row">
+                <label>Ingredient : </label>
+                <input />
+            </div>
+        )
+    }
+
+    // AddRowItem(event){
+    //     event.preventDefault();
+    //     console.log('Row has been added');
+
+    //     return (
+    //         <div className="row">
+    //             <label>Ingredient : </label>
+    //             <input />
+    //         </div>
+    //     )
+    // }
+
     render(){
         return(
-            <form>
-                <div className="container">
-                    <div className="row">
-                        <label>Ingredient 1 : </label>
-                        <input />
-                    </div>
-                </div>
-					 <div className="container">
-                    <div className="row">
-                        <label>Ingredient 2 : </label>
-                        <input />
-                    </div>
-                </div>
-					 <div className="container">
-                    <div className="row">
-                        <label>Ingredient 3 : </label>
-                        <input />
-                    </div>
-                </div>
-					 <div className="container">
-                    <div className="row">
-                        <label>Ingredient 4 : </label>
-                        <input />
-                    </div>
-                </div>
+            <form>            
+                {this.addRow()}
+                {this.addRow()}
+                {this.addRow()}
 					 <div className="container">
 						<div className="row">
 							<div className="col s6 offset-s6 right-align">
-								<div className="btn-floating btn-large waves-effect waves-light red">
-								<i className="material-icons">add</i>
+								<div className="btn-floating btn-large waves-effect waves-light red" >
+                               <i className="material-icons" onClick={this.addRow.bind(this)}>add</i>
 								</div>
 							</div>
 						</div>
